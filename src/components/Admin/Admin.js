@@ -44,7 +44,7 @@ const Admin = () => {
       // This Code image link generator
 
     return (
-        <div>
+        <div className="container">
             <h2>this is admin page</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
 

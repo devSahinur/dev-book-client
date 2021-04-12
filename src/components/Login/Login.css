@@ -1,0 +1,50 @@
+.login{
+    text-align: center;
+}
+.google-login-btn{
+    width: 450px;
+    height: 51px;
+    border-radius:30px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+
+}
+.login-form{
+    width:570px;
+    height: 420px;
+    border: 2px solid red;
+    text-align: center;
+    display: inline-block;
+    margin-top: 54px;
+}
+.login-form input{
+    width: 400px;
+    height: 32px;
+    padding: 5px;
+    border: none;
+    border-bottom-style: solid;
+}
+.login-form input:last-child{
+    background-color: #FF6E40;
+    border-bottom-style: none;
+    cursor: pointer;
+}
+
+
+    /* border: none;
+    color: green;
+    background: white;
+    font-size: 17px;
+} */
+
+.from-create-btn{
+    border: none;
+    color: green;
+    background: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+.from-create-btn:hover{
+    background-color: #FF6E40;
+    color:white;
+}

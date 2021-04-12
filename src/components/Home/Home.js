@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Product from '../Product/Product';
+import * as ReactBootStrap from 'react-bootstrap';
+import { UserContext } from '../../App';
 
 const Home = () => {
     const [books, setBooks] = useState([]);
+    const [loggedInUser, setLoggedInUser] =useContext(UserContext)
+
     console.log(books)
 
     useEffect(() => {
@@ -12,19 +16,27 @@ const Home = () => {
         .then(data => setBooks(data))
     },[])
 
+    const handleAddProduct = (product) =>{
+        setLoggedInUser(product)
+        console.log(product);
+    }
+
     return (
         <div className="container">
             <Container>
                 <Row>
                 {
-                    
                     books.map(book => <Product 
                         key={book._id}
+                        handleAddProduct = {handleAddProduct}
                         book={book}
                         ></Product>)
                 }
                 </Row>
             </Container>
+            {
+                <ReactBootStrap.Spinner animation="border" />
+            }
         </div>
     );
 };

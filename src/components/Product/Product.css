@@ -1,3 +1,4 @@
+
 .product-container{
     width:330px;
     height: 510px;
@@ -58,3 +59,6 @@
     color: #fff;
     text-decoration: none;
   }
+.spinner-border{
+    margin: 0 auto;
+}

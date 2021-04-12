@@ -2,8 +2,7 @@ import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 import './Product.css';
 
-const Product = ({book}) => {
-console.log(book);
+const Product = ({book, handleAddProduct}) => {
     return (
         <Col sm={4}>
              <Card className="product-container">
@@ -15,7 +14,7 @@ console.log(book);
                     <Card.Text>{book.authorName}</Card.Text>
                     <div className="card-bottom">
                         <h2>${book.price}</h2>
-                        <button>Buy Now</button>
+                        <button onClick={() => handleAddProduct(book)}>Buy Now</button>
                     </div>
                 </Card.Body>
             </Card>
