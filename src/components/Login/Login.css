@@ -25,7 +25,7 @@
     border-bottom-style: solid;
 }
 .login-form input:last-child{
-    background-color: #FF6E40;
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
     border-bottom-style: none;
     cursor: pointer;
 }
