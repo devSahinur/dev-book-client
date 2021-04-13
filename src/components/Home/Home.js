@@ -6,13 +6,11 @@ import { UserContext } from '../../App';
 
 const Home = () => {
     const [books, setBooks] = useState([]);
-    const [loggedInUser, setLoggedInUser] =useContext(UserContext)
-
-    console.log(books)
+    const [loggedInUser, setLoggedInUser] =useContext(UserContext);
 
     useEffect(() => {
         fetch('https://vast-ridge-55791.herokuapp.com/books')
-        .then(res => res.json())
+        .then(res => res.json()) 
         .then(data => setBooks(data))
     },[])
 

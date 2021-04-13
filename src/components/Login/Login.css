@@ -7,12 +7,19 @@
     border-radius:30px;
     margin-bottom: 10px;
     margin-top: 0px;
-
+    color:white;
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+    border:none;
+    transition: 0.5s;
+}
+.google-login-btn:hover{
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
 }
 .login-form{
     width:570px;
     height: 420px;
-    border: 2px solid red;
+    border: 2px solid #4776E6;
     text-align: center;
     display: inline-block;
     margin-top: 54px;
@@ -27,6 +34,7 @@
 .login-form input:last-child{
     background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
     border-bottom-style: none;
+    color: white;
     cursor: pointer;
 }
 
@@ -45,6 +53,6 @@
     cursor: pointer;
 }
 .from-create-btn:hover{
-    background-color: #FF6E40;
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
     color:white;
 }

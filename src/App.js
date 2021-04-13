@@ -12,12 +12,12 @@ import Admin from "./components/Admin/Admin";
 import Header from "./components/Header/Header";
 import CheckOut from "./components/CheckOut/CheckOut";
 import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 export const UserContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-  console.log(loggedInUser);
   return (
     <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
       <h3>email: {loggedInUser.email}</h3>
@@ -30,18 +30,18 @@ function App() {
             <Route exact path="/home">
               <Home />
             </Route>
-            <Route path="/orders">
+            <PrivateRoute path="/orders">
               <Orders />
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/checkout">
+            <PrivateRoute path="/product/:checkoutKey">
               <CheckOut />
-            </Route>
-            <Route path="/admin">
+            </PrivateRoute>
+            <PrivateRoute path="/admin">
               <Admin />
-            </Route>
+            </PrivateRoute>
           </Switch>
       </Router>
       </UserContext.Provider>

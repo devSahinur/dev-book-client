@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { UserContext } from '../../App';
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import './Header.css';
 
 
+
+
 const Header = () => {
+    const [loggedInUser] =useContext(UserContext);
+    console.log(loggedInUser)
     return (
         <div className="header">
             <nav className="container d-flex">
@@ -15,7 +20,7 @@ const Header = () => {
                     <Link to="/home">Home</Link>
                     <Link to="/orders">Orders</Link>
                     <Link to="/admin">Admin</Link>
-                    <Link to="/checkout"><ShoppingCartIcon></ShoppingCartIcon> Checkout</Link>
+                    {/* <Link to="/product"><ShoppingCartIcon></ShoppingCartIcon> Checkout</Link> */}
                     <Link to="/login"><button>Login</button></Link>
                 </div>
                 

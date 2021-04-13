@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, Card, Col } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './Product.css';
 
 const Product = ({book, handleAddProduct}) => {
+    // const id = book._id;
     return (
         <Col sm={4}>
              <Card className="product-container">
@@ -14,7 +16,7 @@ const Product = ({book, handleAddProduct}) => {
                     <Card.Text>{book.authorName}</Card.Text>
                     <div className="card-bottom">
                         <h2>${book.price}</h2>
-                        <button onClick={() => handleAddProduct(book)}>Buy Now</button>
+                        <Link to={"/product/"+book._id}><button onClick={() => handleAddProduct(book)}>Buy Now</button></Link>
                     </div>
                 </Card.Body>
             </Card>

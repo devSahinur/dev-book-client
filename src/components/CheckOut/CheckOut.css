@@ -1,0 +1,30 @@
+.costom-table{
+    border:2px solid #4776E6;
+    margin-top: 200px;
+    background-color: #F1F1F1;
+}
+
+.CheckOut{
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+    margin: 15px;
+    padding: 10px 25px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    border: none;
+    margin-left: 35px;
+
+}
+.CheckOut:hover{
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+.table-titles{
+    background-color: #4776E6;
+}
