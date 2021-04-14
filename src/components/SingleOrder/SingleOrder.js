@@ -29,7 +29,19 @@ const useStyles = makeStyles((theme) => ({
 
 const SingleOrder = (order) => {
     const {bookName, imageURL, price, authorName}= order.order.orders;
+    // console.log(order.order._id)
     const classes = useStyles();
+
+    const deleteProduct = (id) => {
+        console.log(id)
+        fetch(`http://localhost:5500/delete/${id}`,{
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log('deleted successfully')
+        })
+    }
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
@@ -50,8 +62,8 @@ const SingleOrder = (order) => {
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                        Remove
+                        <Typography onClick={() =>deleteProduct(order.order._id)} variant="body2" style={{ cursor: 'pointer' }}>
+                            Delete
                         </Typography>
                     </Grid>
                     </Grid>

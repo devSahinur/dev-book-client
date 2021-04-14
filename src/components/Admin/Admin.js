@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import './Admin.css'
 
 const Admin = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -13,7 +14,7 @@ const Admin = () => {
               price: data.price,
               imageURL: imageURL
           };
-          const url =`http://localhost:5000/addBook`;
+          const url =`http://localhost:5500/addBook`;
           console.log(eventData);
           fetch(url,{
               method: 'POST',
@@ -45,8 +46,7 @@ const Admin = () => {
 
     return (
         <div className="container">
-            <h2>this is admin page</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            {/* <form onSubmit={handleSubmit(onSubmit)}>
 
             <input name="bookName" type="text" placeholder="Enter Book Name" {...register("bookName")} />
             <br/>
@@ -57,7 +57,34 @@ const Admin = () => {
             <input name="img" type="file" onChange={handleImageUpload} />
             <br/>
             <input type="submit" />
-            </form>
+            </form> */}
+            <form  onSubmit={handleSubmit(onSubmit)} >
+  
+            <h1 className="addTitle mx-auto"><strong>Dev Book</strong> Post</h1>
+            
+            <div class="form-group">
+              <label for="title">Book <span>Name</span></label>
+              <input type="text" placeholder="Enter Book Name" {...register("bookName")} name="bookName" id="title" class="form-controll"/>
+            </div>
+            <div class="form-group">
+              <label for="caption">Author <span>Name</span></label>
+              <input type="text" placeholder="Enter Author Name" {...register("authorName")} name="authorName" id="caption" class="form-controll"/>
+            </div>
+            <div class="form-group">
+              <label for="caption">Book <span>Price</span></label>
+              <input type="number" placeholder="Enter Price" {...register("price")} name="price" id="caption" class="form-controll"/>
+            </div>
+            
+            <div class="form-group">
+                  <label for="images">Book <span>images</span></label>
+                  <input class="form-controll" name="img" type="file" onChange={handleImageUpload} />
+            </div>
+            
+            <div class="post-btn form-group">
+              <button type="submit">Post</button>
+            </div>
+            
+          </form>
         </div>
     );
 };

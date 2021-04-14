@@ -1,0 +1,51 @@
+.form-controll {
+  display: block;
+  padding: 8px 16px;
+  width: 100%;
+  font-size: 16px;
+  background-color: #EEF5F1;
+  border: 2px solid #4776E6;
+  color:#4776E6;
+  font-weight: bold;
+}
+
+
+
+.form-group {
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.back-to-article {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  text-decoration: none;
+  display: inline-block;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 18px;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.6;
+}
+.post-btn button{
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+    padding: 10px 25px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    border: none;
+    cursor: pointer;
+}
+.addTitle{
+    text-align: center;
+    margin-top: 10%;
+}

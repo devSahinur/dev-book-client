@@ -39,7 +39,7 @@ const Orders = () => {
     return (
         <div>
           {
-            totalOrders.map(pd =><SingleOrder order={pd} ></SingleOrder>)
+            totalOrders.map(pd =><SingleOrder key={pd._id} order={pd} ></SingleOrder>)
           }
         </div>
     );

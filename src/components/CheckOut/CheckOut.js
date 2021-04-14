@@ -19,14 +19,17 @@ const CheckOut = () => {
     const handleCheckOutConform =() => {
         const checkOutBook = {email, orders}
         console.log(checkOutBook)
-        fetch('http://localhost:5000/addOrder',{
+        fetch('http://localhost:5500/addOrder',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(checkOutBook)
         })
-        .then(res => console.log('Server side response', res))
+        .then(res => {
+            console.log('Server side response', res)
+            alert('Thanks For Your Order')
+        })
     }
 
 
