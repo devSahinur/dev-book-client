@@ -12,7 +12,7 @@ const Product = ({book, handleAddProduct}) => {
                  </div>
                 <Card.Body>
                     <Card.Title>{book.bookName}</Card.Title>
-                    <Card.Text>{book.authorName}</Card.Text>
+                    <Card.Text>By {book.authorName}</Card.Text>
                     <div className="card-bottom">
                         <h2>${book.price}</h2>
                         <Link to={"/product/"+book._id}><button onClick={() => handleAddProduct(book)}>Buy Now</button></Link>
