@@ -25,11 +25,9 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Orders = () => {
-    const classes = useStyles();
     const [orders, setOrders] = useState([])
-    const [loggedInUser, setLoggedInUser] =useContext(UserContext);
+    const [loggedInUser] =useContext(UserContext);
     const totalOrders = orders.filter(user => user.email == loggedInUser.email);
-    console.log(totalOrders);
 
     useEffect(() => {
         fetch('https://vast-ridge-55791.herokuapp.com/orders')

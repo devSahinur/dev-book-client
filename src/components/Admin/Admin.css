@@ -10,7 +10,6 @@
 }
 
 
-
 .form-group {
   max-width: 500px;
   margin: auto;
@@ -45,7 +44,35 @@
     border: none;
     cursor: pointer;
 }
+.post-btn button:hover{
+    background-position: right center; 
+    color: #fff;
+    text-decoration: none;
+}
+.toggle-btn-menu button{
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+    padding: 10px 25px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: table;
+    border: none;
+    cursor: pointer;
+}
+.toggle-btn-menu button:hover{
+    background-position: right center; 
+    color: #fff;
+    text-decoration: none;
+}
+.toggle-btn-menu.mx-auto {
+    display: table;
+    margin-top: 4%
+}
 .addTitle{
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
 }

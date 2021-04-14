@@ -19,7 +19,7 @@ const CheckOut = () => {
     const handleCheckOutConform =() => {
         const checkOutBook = {email, orders}
         console.log(checkOutBook)
-        fetch('http://localhost:5500/addOrder',{
+        fetch('https://vast-ridge-55791.herokuapp.com/addOrder',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

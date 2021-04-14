@@ -16,7 +16,6 @@ const Home = () => {
 
     const handleAddProduct = (product) =>{
         setLoggedInUser(product)
-        console.log(product);
     }
 
     return (

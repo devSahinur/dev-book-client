@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Orders from "./components/Orders/Orders";
@@ -20,7 +19,7 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
-      <h3>email: {loggedInUser.email}</h3>
+      {/* <h3>email: {loggedInUser.email}</h3> */}
       <Router>
         <Header></Header>
           <Switch>

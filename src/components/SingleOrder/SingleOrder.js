@@ -29,17 +29,15 @@ const useStyles = makeStyles((theme) => ({
 
 const SingleOrder = (order) => {
     const {bookName, imageURL, price, authorName}= order.order.orders;
-    // console.log(order.order._id)
     const classes = useStyles();
 
     const deleteProduct = (id) => {
-        console.log(id)
-        fetch(`http://localhost:5500/delete/${id}`,{
+        fetch(`https://vast-ridge-55791.herokuapp.com/delete/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())
         .then(result => {
-            console.log('deleted successfully')
+            alert('deleted successfully')
         })
     }
     return (

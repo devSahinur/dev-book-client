@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import ManageBook from '../ManageBook/ManageBook';
 import './Admin.css'
 
 const Admin = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [imageURL, setImageURL] = useState(null);
+    const [post, setPost] = useState(false);
 
       const onSubmit = data => {
           const eventData = {
@@ -14,7 +16,7 @@ const Admin = () => {
               price: data.price,
               imageURL: imageURL
           };
-          const url =`http://localhost:5500/addBook`;
+          const url =`https://vast-ridge-55791.herokuapp.com/addBook`;
           console.log(eventData);
           fetch(url,{
               method: 'POST',
@@ -29,7 +31,7 @@ const Admin = () => {
       
       // This Code image link generator Start
       const handleImageUpload = event => {
-        console.log(event.target.files[0])
+        // console.log(event.target.files[0])
         const imageData = new FormData();
         imageData.set('key', '701a71fc100ddc2599c9438b268fee30')
         imageData.append('image', event.target.files[0])
@@ -46,45 +48,36 @@ const Admin = () => {
 
     return (
         <div className="container">
-            {/* <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="toggle-btn-menu mx-auto">
+                  {post ? <button onClick={() => setPost(!post)}>Add Book Post</button> : <button onClick={() => setPost(!post)}>Manage books</button>}
+                </div>
+            {
+                post ? <ManageBook></ManageBook> : <form className="form-admin"  onSubmit={handleSubmit(onSubmit)} >
+    
+                <h1 className="addTitle mx-auto"><strong>Dev Book</strong> Post</h1>
+                <div className="form-group">
+                  <label for="title">Book <span>Name</span></label>
+                  <input type="text" placeholder="Enter Book Name" {...register("bookName")} name="bookName" id="title" className="form-controll"/>
+                </div>
+                <div className="form-group">
+                  <label for="caption">Author <span>Name</span></label>
+                  <input type="text" placeholder="Enter Author Name" {...register("authorName")} name="authorName" id="caption" className="form-controll"/>
+                </div>
+                <div className="form-group">
+                  <label for="caption">Book <span>Price</span></label>
+                  <input type="number" placeholder="Enter Price" {...register("price")} name="price" id="caption" className="form-controll"/>
+                </div>
+                <div className="form-group">
+                      <label for="images">Book <span>images</span></label>
+                      <input className="form-controll" name="img" type="file" onChange={handleImageUpload} />
+                </div>
+                <div className="post-btn form-group">
+                  <button type="submit">Post</button>
+                </div>
+                
+              </form>
 
-            <input name="bookName" type="text" placeholder="Enter Book Name" {...register("bookName")} />
-            <br/>
-            <input name="authorName" type="text" placeholder="Enter Author Name" {...register("authorName")} />
-            <br/>
-            <input name="price" type="number" placeholder="Enter Price" {...register("price")} />
-            <br/>
-            <input name="img" type="file" onChange={handleImageUpload} />
-            <br/>
-            <input type="submit" />
-            </form> */}
-            <form  onSubmit={handleSubmit(onSubmit)} >
-  
-            <h1 className="addTitle mx-auto"><strong>Dev Book</strong> Post</h1>
-            
-            <div class="form-group">
-              <label for="title">Book <span>Name</span></label>
-              <input type="text" placeholder="Enter Book Name" {...register("bookName")} name="bookName" id="title" class="form-controll"/>
-            </div>
-            <div class="form-group">
-              <label for="caption">Author <span>Name</span></label>
-              <input type="text" placeholder="Enter Author Name" {...register("authorName")} name="authorName" id="caption" class="form-controll"/>
-            </div>
-            <div class="form-group">
-              <label for="caption">Book <span>Price</span></label>
-              <input type="number" placeholder="Enter Price" {...register("price")} name="price" id="caption" class="form-controll"/>
-            </div>
-            
-            <div class="form-group">
-                  <label for="images">Book <span>images</span></label>
-                  <input class="form-controll" name="img" type="file" onChange={handleImageUpload} />
-            </div>
-            
-            <div class="post-btn form-group">
-              <button type="submit">Post</button>
-            </div>
-            
-          </form>
+            }
         </div>
     );
 };

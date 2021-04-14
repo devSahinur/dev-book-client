@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import './Product.css';
 
 const Product = ({book, handleAddProduct}) => {
-    // const id = book._id;
     return (
         <Col sm={4}>
              <Card className="product-container">
