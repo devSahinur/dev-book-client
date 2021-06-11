@@ -6,8 +6,8 @@ import {
   Route,
 } from "react-router-dom";
 import Home from "./components/Home/Home";
-// import Orders from "./components/Orders/Orders";
-// import Admin from "./components/Admin/Admin";
+import Orders from "./components/Orders/Orders";
+import Admin from "./components/Admin/Admin";
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
 import CheckOut from "./components/CheckOut/CheckOut";
@@ -22,7 +22,13 @@ function App() {
     <UserContext.Provider value={{ loggedInUser, setLoggedInUser, cart, setCart }}>
       <Router>
           <Switch>
-          <Route exact path="/login">
+              <Route  path="/admin">
+                <Admin />
+              </Route>
+              <Route  path="/panel/:adminPanel">
+                <Admin />
+              </Route>
+              <Route path="/login">
                 <Login/>
               </Route>
             <>
@@ -30,7 +36,10 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path="/checkout">
+              <Route path="/orders">
+                <Orders />
+              </Route>
+              <Route path="/checkout">
                 <CheckOut/>
               </Route>
             </>
