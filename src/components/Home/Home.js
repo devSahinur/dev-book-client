@@ -1,40 +1,57 @@
-import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import PuffLoader from "react-spinners/PuffLoader";
+// import Footer from '../Footer/Footer';
 import Product from '../Product/Product';
-import * as ReactBootStrap from 'react-bootstrap';
-import { UserContext } from '../../App';
+
+const loaderStyle = `
+  display: block;
+  margin: auto;
+`;
 
 const Home = () => {
-    const [books, setBooks] = useState([]);
-    const [loggedInUser, setLoggedInUser] =useContext(UserContext);
+    // const { register, handleSubmit } = useForm();
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://vast-ridge-55791.herokuapp.com/books')
-        .then(res => res.json()) 
-        .then(data => setBooks(data))
-    },[])
+        axios.get('https://electro-server.herokuapp.com/products')
+            .then(response => {
+                setProducts(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, [])
 
-    const handleAddProduct = (product) =>{
-        setLoggedInUser(product)
+    const onSubmit = data => {
+        setLoading(true);
+        axios.get(`https://electro-server.herokuapp.com/search?keyword=${data.keyword}`)
+            .then(response => {
+                setProducts(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
-        <div className="container">
-            <Container>
-                <Row>
+        <Container>
+            {/* <form className="search-box" onSubmit={handleSubmit(onSubmit)}>
+                <input name="keyword" type="text" ref={register} className="search-input" placeholder="Search" />
+                <button className="search-btn">Search</button>
+            </form> */}
+            <PuffLoader loading={loading} css={loaderStyle} color={"#FF4B2B"} size={150} />
+            <Row xs={1} md={2} lg={3} className="g-4 my-5">
                 {
-                    books.map(book => <Product 
-                        key={book._id}
-                        handleAddProduct = {handleAddProduct}
-                        book={book}
-                        ></Product>)
+                    products.map(product => <Product key={product._id} product={product} />)
                 }
-                </Row>
-            </Container>
-            {
-                <ReactBootStrap.Spinner animation="border" />
-            }
-        </div>
+            </Row>
+        </Container>
     );
 };
 

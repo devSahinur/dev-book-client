@@ -1,25 +1,43 @@
-import React from 'react';
-import { Card, Col } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Button, Card, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Product.css';
+import { UserContext } from '../../App';
 
-const Product = ({book, handleAddProduct}) => {
+const Product = (props) => {
+    const { productName, price, productImage } = props.product;
+    const { setCart } = useContext(UserContext);
+
     return (
-        <Col sm={4}>
-             <Card className="product-container">
-                 <div className="product-img">
-                     <Card.Img variant="top" src={book.imageURL} />
-                 </div>
-                <Card.Body>
-                    <Card.Title>{book.bookName}</Card.Title>
-                    <Card.Text>By {book.authorName}</Card.Text>
-                    <div className="card-bottom">
-                        <h2>${book.price}</h2>
-                        <Link to={"/product/"+book._id}><button onClick={() => handleAddProduct(book)}>Buy Now</button></Link>
-                    </div>
+        <Col>
+            <Card className="shadow mb-4" style={{ borderRadius: "20px", border: 0 }}>
+                <div className="d-flex align-items-center p-2" style={{ maxwidth: "300px", height: "300px"}}>
+                    <Card.Img
+                        className="w-100"
+                        style={{ objectFit: "contain", maxHeight: "300px" }}
+                        variant="top"
+                        src={productImage}
+                    />
+                </div>
+                <Card.Body className="pb-0">
+                    <Card.Title as={"h4"} >{productName}</Card.Title>
+                </Card.Body>
+                <Card.Body className="d-flex justify-content-between align-items-center">
+                    <Card.Title
+                        as={"h2"}
+                        className="mb-1"
+                        style={{ fontWeight: "600", color: "#FF4B2B"}}>
+                        ${price}
+                    </Card.Title>
+                    <Button
+                        as={Link}
+                        to="checkout"
+                        onClick={() => setCart(props.product)}
+                        className="buy-btn shadow-none">
+                        Buy Now
+                    </Button>
                 </Card.Body>
             </Card>
-         </Col>
+        </Col >
     );
 };
 

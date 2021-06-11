@@ -1,178 +1,208 @@
-import React, { useContext } from 'react';
-import firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from './firebase.config';
-import { useState } from 'react';
-import './Login.css';
+import React, { useContext, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import rocket from '../../image/rocket.svg'
+import desk from '../../image/desk.svg'
+import { createUserWithEmailAndPassword, handleFbSignIn, handleGhSignIn, handleGoogleSignIn, initializeLoginFramework, signInWithEmailAndPassword } from './LoginManager';
 import { UserContext } from '../../App';
-import { useHistory, useLocation } from 'react-router';
+import './Login.css'
 
 
-//this part firebase initializeApp
-if(firebase.apps.length === 0){
-    firebase.initializeApp(firebaseConfig);
-}
 
-// this part State and storageData
+
+
+
 const Login = () => {
+    const { setLoggedInUser } = useContext(UserContext);
     const [newUser, setNewUser] = useState(false);
+    const [mode, setMode] = useState('');
+
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
+
+    const { register, handleSubmit } = useForm();
+
     const [user, setUser] = useState({
         isSignedIn: false,
-        name: '',
+        userName: '',
         email: '',
-        password: '',
-        photo: '',
-        error: '',
-        success: ''
-      });
+        userPhoto: ''
+    });
+    setLoggedInUser(user);
 
-      const [loggedInUser, setLoggedInUser] =useContext(UserContext);
-      const history = useHistory();
-      const location = useLocation();
-      let { from } = location.state || { from: { pathname: "/" } };
+    initializeLoginFramework();
 
-      console.log(user);
+    const googleSignIn = () => {
+        handleGoogleSignIn()
+            .then(res => {
+                setUser(res);
+                history.replace(from);
+            });
+    }
 
-      var provider = new firebase.auth.GoogleAuthProvider();
+    const fbSignIn = () => {
+        handleFbSignIn()
+            .then(res => {
+                setUser(res);
+                history.replace(from);
+            });
+    }
 
-      const handleGoogleSignIn = () => {
-        firebase.auth().signInWithPopup(provider)
-      .then((res) => {
-        const {displayName, email, photoURL} = res.user;
-        const signedInUser = {
-            isSignedIn: true,
-            name: displayName,
-            email: email,
-            photo: photoURL
+    const GhSignIn = () => {
+        handleGhSignIn()
+            .then(res => {
+                setUser(res);
+                history.replace(from);
+            });
+    }
+
+    const onSubmit = data => {
+        const { name, email, password } = data;
+
+        if (newUser && name && email && password) {
+            createUserWithEmailAndPassword(name, email, password)
+                .then(res => {
+                    res.userName = name;
+                    setUser(res);
+                    history.replace(from);
+                })
         }
-        setUser(signedInUser);
-        setLoggedInUser(signedInUser);
-        history.replace(from);
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log(error.message)
-      });
+
+        if (!newUser && email && password) {
+            signInWithEmailAndPassword(email, password)
+                .then(res => {
+                    setUser(res);
+                    history.replace(from);
+                })
+        }
     }
-    // this part from development
-    const handleBlur = (e) => {
-      let isFieldValid = true;
-      if(e.target.name === 'email'){
-        isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
-      }
-      if(e.target.name === 'name'){
-        const isNameValid = e.target.value.length > 3;
-        isFieldValid = isNameValid
-      }
-      if(e.target.name === 'password'){
-        const isPasswordValid = e.target.value.length > 6;
-        const passwordNumber = /\d{1}/.test(e.target.value);
-        isFieldValid = isPasswordValid && passwordNumber
-      }
-      if(e.target.name === 'confirm_password'){
-        const isPasswordValid = e.target.value.length > 6;
-        const passwordNumber = /\d{1}/.test(e.target.value);
-        isFieldValid = isPasswordValid && passwordNumber
-      }
-      if(e.target['password'] !== undefined && e.target['confirm_password'] !== undefined){
-          if(e.target['password'] != e.target['confirm_password']){
-            isFieldValid = false;
-          }
-      }
-      if(isFieldValid){
-        const newUserInfo = {...user};
-        newUserInfo[e.target.name] =e.target.value;
-        setUser(newUserInfo);
-      }
-    };
-
-    const handleSubmit = (e) => {
-      // console.log(user.email, user.password);
-      if(newUser && user.email && user.password){
-        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-          .then((res) => {
-            // Signed in 
-            const newUserInfo = {...user};
-            newUserInfo.error = '';
-            newUserInfo.success = true;
-            newUserInfo.isSignedIn = true;
-            setUser(newUserInfo);
-            updateUserName(user.name);
-
-          })
-          .catch((error) => {
-            // data send state
-            const newUserInfo = {...user}
-            newUserInfo.error = error.message;
-            newUserInfo.success = false;
-            setUser(newUserInfo);
-          });
-      }
-
-      if (!newUser && user.email && user.password) {
-        firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-        .then((res) => {
-          const newUserInfo = {...user};
-            newUserInfo.error = '';
-            newUserInfo.success = true;
-            newUserInfo.isSignedIn = true;
-            setUser(newUserInfo);
-            setLoggedInUser(newUserInfo);
-            history.replace(from);
-            console.log('sign in user info');
-        })
-        .catch((error) => {
-          const newUserInfo = {...user};
-            newUserInfo.error = error.message;
-            newUserInfo.success = false;
-            setUser(newUserInfo);
-        });
-      }
-      e.preventDefault();
+    const signUpBtnHandle = () => {
+        setNewUser(true)
+        setMode('sign-up-mode')
+        document.title = "Sign Up ";
     }
-    // from development end
-
-    const updateUserName = name => {
-      var user = firebase.auth().currentUser;
-      console.log(name);
-        user.updateProfile({
-          displayName: name
-        })
-        .then(function() {
-          console.log("User name Update successful");
-          // Update successful.
-        })
-        .catch(function(error) {
-          console.log(error);
-          // An error happened.
-        });
+    
+    const signINBtnHandle = () =>{
+        setNewUser(false)
+        setMode('')
+        document.title = "Login";
     }
 
     return (
-        <div className='login'>
-            <form className="login-form" onSubmit={handleSubmit}>
-            {newUser ? <h1>Create an account</h1> : <h1>Login</h1>}
-            {newUser && <input name="name" type="text" onClick={handleBlur} required placeholder="Name"/>}
-            <br/>
-            <br/>
-            {newUser ? <input type="email" name="email" onClick={handleBlur} required placeholder="Username or Email"/> : <input type="email" name="email" onClick={handleBlur} required placeholder="Email"/>}
-            <br/>
-            <br/>
-            <input type="password" name="password" onClick={handleBlur} required placeholder="Password"/>
-            <br/>
-            <br/>
-            {newUser && <input type="password" name="confirm_password" onClick={handleBlur} required placeholder="Confirm Password"/>}
-            <br/>
-            <br/>
-            <input type="submit" value={newUser ? 'Sign Up' : 'Sign In'}/>
-            </form>
+        <div className={`containerr ${mode}`}>
+            <div className="forms-container">
+                <div className="signin-signup">
+                <form  action="" onSubmit={handleSubmit(onSubmit)}  className="sign-in-form">
+                    <h2 className="title">Sign in</h2>
+                    <div className="input-field">
+                        <i className="fas fa-user"></i>
+                        <input
+                            name="email"
+                            type="email"
+                            ref={register({ required: true, pattern: /\S+@\S+\.\S+/ })}
+                            placeholder="Email"
+                            required />
+                    </div>
+                    <div className="input-field">
+                        <i className="fas fa-lock"></i>
+                        <input
+                            name="password"
+                            type="password"
+                            ref={register({ required: true })}
+                            placeholder="Password"
+                            required />
+                    </div>
+                    <button type="submit" className="btnn solid" >Login</button>
+                    <p className="social-text">Or Sign in with social platforms</p>
+                    <div className="social-media">
+                    <a onClick={googleSignIn} href="#" className="social-icon">
+                        <FontAwesomeIcon icon={faGoogle} />
+                    </a>
+                    <a onClick={fbSignIn} href="#" className="social-icon">
+                        <FontAwesomeIcon icon={faFacebookF} />
+                    </a>
+                    <a onClick={GhSignIn} href="#" className="social-icon">
+                        <FontAwesomeIcon icon={faGithub} /> 
+                    </a>
+                    </div>
+                </form>
+                <form   className="sign-up-form">
+                    <h2 className="title">Sign up</h2>
+                    <div className="input-field">
+                    <i className="fas fa-user"></i>
+                    <input
+                                name="name"
+                                type="text"
+                                ref={register({ required: true })}
+                                placeholder="Name"
+                                required />
+                    </div>
+                    <div className="input-field">
+                    <i className="fas fa-envelope"></i>
+                    <input
+                            name="email"
+                            type="email"
+                            ref={register({ required: true, pattern: /\S+@\S+\.\S+/ })}
+                            placeholder="Email"
+                            required />
+                    </div>
+                    <div className="input-field">
+                    <i className="fas fa-lock"></i>
+                    <input
+                            name="password"
+                            type="password"
+                            ref={register({ required: true })}
+                            placeholder="Password"
+                            required />
+                    </div>
+                    <button type="submit" className="btnn">Sign up</button>
+                    <p className="social-text">Or Sign up with social platforms</p>
+                    <div className="social-media">
+                    <a onClick={googleSignIn} href="#" className="social-icon">
+                        <FontAwesomeIcon icon={faGoogle} />
+                    </a>
+                    <a onClick={fbSignIn} href="#" className="social-icon">
+                        <FontAwesomeIcon icon={faFacebookF} />
+                    </a>
+                    <a onClick={GhSignIn} href="#" className="social-icon">
+                        <FontAwesomeIcon icon={faGithub} /> 
+                    </a>
+                    </div>
+                </form>
+                </div>
+            </div>
 
-            {newUser ? <p>Already have an account? <button className="from-create-btn" onClick={() => setNewUser(!newUser)}>Login</button></p> : <p>Don't have an account? <button className="from-create-btn" onClick={() => setNewUser(!newUser)}>Create an account</button></p>}
-            <br/>
-            {user.success && <p style={{color: 'green'}}>{user.error}User { newUser ? 'created' : 'Logged In'} successfully</p>}
-            <p style={{color: 'red'}}>{user.error}</p>
-            <button className="google-login-btn" onClick={handleGoogleSignIn}>Continue with Google</button>
-            <br/>
+            <div className="panels-container">
+                <div className="panel left-panel">
+                <div className="content">
+                    <h3>New here ?</h3>
+                    <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+                    ex ratione. Aliquid!
+                    </p>
+                    <button onClick={signUpBtnHandle} className="btnn transparent" id="sign-up-btn">
+                    Sign up
+                    </button>
+                </div>
+                <img src={rocket} className="image" alt="" />
+                </div>
+                <div className="panel right-panel">
+                <div className="content">
+                    <h3>One of us ?</h3>
+                    <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                    laboriosam ad deleniti.
+                    </p>
+                    <button onClick={signINBtnHandle}  className="btnn transparent" id="sign-in-btn">
+                    Sign in
+                    </button>
+                </div>
+                <img src={desk} className="image" alt="" />
+                </div>
+            </div>
         </div>
     );
 };
