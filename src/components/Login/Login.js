@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { useHistory, useLocation } from 'react-router-dom';
+import {Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import rocket from '../../image/rocket.svg'
 import desk from '../../image/desk.svg'
@@ -118,15 +118,15 @@ const Login = () => {
                     <button type="submit" className="btnn solid" >Login</button>
                     <p className="social-text">Or Sign in with social platforms</p>
                     <div className="social-media">
-                    <a onClick={googleSignIn} href="#" className="social-icon">
-                        <FontAwesomeIcon icon={faGoogle} />
-                    </a>
-                    <a onClick={fbSignIn} href="#" className="social-icon">
-                        <FontAwesomeIcon icon={faFacebookF} />
-                    </a>
-                    <a onClick={GhSignIn} href="#" className="social-icon">
-                        <FontAwesomeIcon icon={faGithub} /> 
-                    </a>
+                        <Link onClick={googleSignIn}  className="social-icon">
+                            <FontAwesomeIcon icon={faGoogle} />
+                        </Link>
+                        <Link onClick={fbSignIn}  className="social-icon">
+                            <FontAwesomeIcon icon={faFacebookF} />
+                        </Link>
+                        <Link onClick={GhSignIn} className="social-icon">
+                            <FontAwesomeIcon icon={faGithub} /> 
+                        </Link>
                     </div>
                 </form>
                 <form   className="login-form sign-up-form">
@@ -161,15 +161,15 @@ const Login = () => {
                     <button type="submit" className="btnn">Sign up</button>
                     <p className="social-text">Or Sign up with social platforms</p>
                     <div className="social-media">
-                    <a onClick={googleSignIn} href="#" className="social-icon">
-                        <FontAwesomeIcon icon={faGoogle} />
-                    </a>
-                    <a onClick={fbSignIn} href="#" className="social-icon">
-                        <FontAwesomeIcon icon={faFacebookF} />
-                    </a>
-                    <a onClick={GhSignIn} href="#" className="social-icon">
-                        <FontAwesomeIcon icon={faGithub} /> 
-                    </a>
+                        <Link onClick={googleSignIn}  className="social-icon">
+                            <FontAwesomeIcon icon={faGoogle} />
+                        </Link>
+                        <Link onClick={fbSignIn}  className="social-icon">
+                            <FontAwesomeIcon icon={faFacebookF} />
+                        </Link>
+                        <Link onClick={GhSignIn} className="social-icon">
+                            <FontAwesomeIcon icon={faGithub} /> 
+                        </Link>
                     </div>
                 </form>
                 </div>
