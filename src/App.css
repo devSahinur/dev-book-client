@@ -117,7 +117,7 @@ h1.d-inline-block.align-top {
   #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #a0b3ff;
+    background: #4A75E6;
     color: #fff;
     transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
     transform-origin: bottom left;
@@ -130,12 +130,12 @@ h1.d-inline-block.align-top {
   
   #sidebar .sidebar-header {
     padding: 20px;
-    background: #a0b3ff;
+    background: #4A75E6;
   }
   
   #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #28404d;
   }
   
   #sidebar ul p {
@@ -147,18 +147,22 @@ h1.d-inline-block.align-top {
     padding: 10px;
     font-size: 1.1em;
     display: block;
-    color: black;
+    color: white;
     text-decoration: none;
   }
+ 
   #sidebar ul li a:hover {
-    color: #7386d5;
+    color: #4A75E6;
     background: #fff;
+  }
+  #sidebar ul li .back-home {
+    color: black;
   }
   
   #sidebar ul li.active > a,
   a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #4A75E6;
   }
   
   a[data-toggle="collapse"] {
@@ -176,7 +180,7 @@ h1.d-inline-block.align-top {
   ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #4A75E6;
   }
   
   ul.CTAs {
@@ -191,14 +195,14 @@ h1.d-inline-block.align-top {
     margin-bottom: 5px;
   }
   
-  a.download {
+  a.back-home {
     background: #fff;
-    color: #7386d5;
+    color: black;
   }
   
   a.article,
   a.article:hover {
-    background: #6d7fcc !important;
+    background: #4A75E6 !important;
     color: #fff !important;
   }
   

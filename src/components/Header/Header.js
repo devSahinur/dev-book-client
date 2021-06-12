@@ -59,7 +59,7 @@ const Header = () => {
                                     >
                                         <Nav.Link>
                                             <Image
-                                                src={loggedInUser.userPhoto || "https://i.ibb.co/5GzXkwq/user.png"}
+                                                src={loggedInUser.userPhoto || "https://mymbs.co.id/public/upload/image/user/user.png"}
                                                 width="40"
                                                 height="40"
                                                 roundedCircle

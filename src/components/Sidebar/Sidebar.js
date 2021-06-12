@@ -29,7 +29,7 @@ const Sidebar = ({ show }) => {
             </ul>
             <ul className="list-unstyled CTAs">
                 <li>
-                    <Link to="/" className="download">Back to Home</Link>
+                    <Link to="/" className=" back-home">Back to Home</Link>
                 </li>
             </ul>
         </nav>
