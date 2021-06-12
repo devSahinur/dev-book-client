@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import {Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import rocket from '../../image/rocket.svg'
-import desk from '../../image/desk.svg'
+import rocket from '../../image/rocket.svg';
+import desk from '../../image/desk.svg';
 import { createUserWithEmailAndPassword, handleFbSignIn, handleGhSignIn, handleGoogleSignIn, initializeLoginFramework, signInWithEmailAndPassword } from './LoginManager';
 import { UserContext } from '../../App';
-import './Login.css'
+import './Login.css';
 
 
 
