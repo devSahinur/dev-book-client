@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import HashLoader from "react-spinners/HashLoader";
-// import Footer from '../Footer/Footer';
+import Footer from '../Footer/Footer';
 import Product from '../Product/Product';
 
 const loaderStyle = `
@@ -51,6 +51,7 @@ const Home = () => {
                     products.map(product => <Product key={product._id} product={product} />)
                 }
             </Row>
+            {!loading && <Footer />}
         </Container>
     );
 };

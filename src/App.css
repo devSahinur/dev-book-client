@@ -315,6 +315,10 @@ h1.d-inline-block.align-top {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  a.footer-btn {
+    color: #007bff;
+    font-weight: 500;
+}
 
   .btn-grad {background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%)}
 .btn-grad {
