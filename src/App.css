@@ -1,6 +1,10 @@
 h1.d-inline-block.align-top {
   color: #4A75E6;
-}        
+}    
+
+.product-image{
+  background-color: rgb(241, 241, 241);
+}
 
 .search-box {
     width: 100%;

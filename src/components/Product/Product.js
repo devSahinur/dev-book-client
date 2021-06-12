@@ -12,7 +12,7 @@ const Product = (props) => {
             <Card className="shadow mb-4" style={{ borderRadius: "20px", border: 0 }}>
                 <div className="d-flex align-items-center p-2" style={{ maxwidth: "300px", height: "300px"}}>
                     <Card.Img
-                        className="w-100"
+                        className="w-100 product-image"
                         style={{ objectFit: "contain", maxHeight: "300px" }}
                         variant="top"
                         src={productImage}

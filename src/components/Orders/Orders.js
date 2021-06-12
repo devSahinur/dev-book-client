@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import PuffLoader from "react-spinners/PuffLoader";
 import { UserContext } from '../../App';
+import Footer from '../Footer/Footer';
 import OrderList from '../OrderList/OrderList';
 
 const loaderStyle = `
@@ -71,6 +72,7 @@ const Orders = () => {
                         </>
                     )
             )}
+            <Footer/>
         </Container>
     );
 };

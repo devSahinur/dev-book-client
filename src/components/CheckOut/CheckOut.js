@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import { Button, Container, Table } from 'react-bootstrap';
 import swal from 'sweetalert';
+import Footer from '../Footer/Footer';
 import { UserContext } from '../../App';
 
 const CheckOut = () => {
@@ -48,6 +49,7 @@ const CheckOut = () => {
             <div className="text-right">
                 <Button onClick={handleCheckout} className="checkout-btn shadow-none">Checkout</Button>
             </div>
+            <Footer/>
         </Container>
     );
 };
