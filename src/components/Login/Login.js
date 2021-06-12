@@ -10,10 +10,6 @@ import { UserContext } from '../../App';
 import './Login.css';
 
 
-
-
-
-
 const Login = () => {
     const { setLoggedInUser } = useContext(UserContext);
     const [newUser, setNewUser] = useState(false);
@@ -95,7 +91,7 @@ const Login = () => {
         <div className={`containerr ${mode}`}>
             <div className="forms-container">
                 <div className="signin-signup">
-                <form  action="" onSubmit={handleSubmit(onSubmit)}  className=" login-form sign-in-form">
+                <form  onSubmit={handleSubmit(onSubmit)}  className=" login-form sign-in-form">
                     <h2 className="title">Sign in</h2>
                     <div className="input-field">
                         <i className="fas fa-user"></i>
@@ -129,7 +125,7 @@ const Login = () => {
                         </Link>
                     </div>
                 </form>
-                <form   className="login-form sign-up-form">
+                <form onSubmit={handleSubmit(onSubmit)}  className="login-form sign-up-form">
                     <h2 className="title">Sign up</h2>
                     <div className="input-field">
                     <i className="fas fa-user"></i>
