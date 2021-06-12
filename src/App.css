@@ -135,7 +135,7 @@ h1.d-inline-block.align-top {
   
   #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #28404d;
+    /* border-bottom: 1px solid #28404d; */
   }
   
   #sidebar ul p {
