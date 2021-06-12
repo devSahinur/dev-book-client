@@ -179,7 +179,7 @@ const Login = () => {
                 <div className="panel left-panel">
                 <div className="content">
                     <h3>New here ?</h3>
-                    <p>
+                    <p className='login-p'>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
                     ex ratione. Aliquid!
                     </p>
@@ -192,7 +192,7 @@ const Login = () => {
                 <div className="panel right-panel">
                 <div className="content">
                     <h3>One of us ?</h3>
-                    <p>
+                    <p className='login-p'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
                     laboriosam ad deleniti.
                     </p>
