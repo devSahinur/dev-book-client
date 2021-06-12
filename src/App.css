@@ -20,7 +20,7 @@ h1.d-inline-block.align-top {
   .search-input {
     border: none;
     outline: none;
-    background: #f8f7f5;
+    background: rgb(241, 241, 241);
     padding: 18px 18px 18px 50px;
     width: calc(100% - 100px);
   }

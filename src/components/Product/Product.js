@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 
 const Product = (props) => {
-    const { productName, price, productImage } = props.product;
+    const { productName, price, productImage, category } = props.product;
     const { setCart } = useContext(UserContext);
 
     return (
