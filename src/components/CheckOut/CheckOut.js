@@ -11,7 +11,7 @@ const CheckOut = () => {
     const handleCheckout = () => {
         const oderDetails = { ...loggedInUser, product: cart, orderTime: new Date() };
 
-        axios.post('https://electro-server.herokuapp.com/addOrder', oderDetails)
+        axios.post('https://dev-books-server.herokuapp.com/addOrder', oderDetails)
             .then(response => {
                 response.data && swal("Order placed successfully", "Your order placed successfully!", "success");
             })

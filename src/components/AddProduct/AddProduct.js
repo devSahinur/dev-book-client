@@ -22,14 +22,14 @@ const AddProduct = ({ editProduct, updateProduct }) => {
         if (editProduct?._id) {
             return updateProduct(productInfo)
         }
-        axios.post('https://electro-server.herokuapp.com/addProduct', productInfo)
+        axios.post('https://dev-books-server.herokuapp.com/addProduct', productInfo)
             .then(response => response.data && swal("Successfully Added", "Your product is successfully added!", "success"))
             .catch(error => console.log(error));
     }
 
     const handleImageUpload = event => {
         const imageData = new FormData();
-        imageData.set('key', '08d5da1c81cc5c52012f0b930505d031');
+        imageData.set('key', '701a71fc100ddc2599c9438b268fee30');
         imageData.append('image', event.target.files[0]);
 
         axios.post('https://api.imgbb.com/1/upload', imageData)

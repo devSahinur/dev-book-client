@@ -95,7 +95,7 @@ const Login = () => {
         <div className={`containerr ${mode}`}>
             <div className="forms-container">
                 <div className="signin-signup">
-                <form  action="" onSubmit={handleSubmit(onSubmit)}  className="sign-in-form">
+                <form  action="" onSubmit={handleSubmit(onSubmit)}  className=" login-form sign-in-form">
                     <h2 className="title">Sign in</h2>
                     <div className="input-field">
                         <i className="fas fa-user"></i>
@@ -129,7 +129,7 @@ const Login = () => {
                     </a>
                     </div>
                 </form>
-                <form   className="sign-up-form">
+                <form   className="login-form sign-up-form">
                     <h2 className="title">Sign up</h2>
                     <div className="input-field">
                     <i className="fas fa-user"></i>

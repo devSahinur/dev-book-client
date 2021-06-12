@@ -38,18 +38,21 @@ input {
   grid-template-columns: 1fr;
   z-index: 5;
 }
-
-form {
+.login-form{
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   padding: 0rem 5rem;
   transition: all 0.2s 0.7s;
   overflow: hidden;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
+
+/* form {
+  
+} */
 
 form.sign-up-form {
   opacity: 0;

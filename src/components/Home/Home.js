@@ -12,12 +12,12 @@ const loaderStyle = `
 `;
 
 const Home = () => {
-    // const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('https://electro-server.herokuapp.com/products')
+        axios.get('https://dev-books-server.herokuapp.com/products')
             .then(response => {
                 setProducts(response.data);
                 setLoading(false);
@@ -29,7 +29,7 @@ const Home = () => {
 
     const onSubmit = data => {
         setLoading(true);
-        axios.get(`https://electro-server.herokuapp.com/search?keyword=${data.keyword}`)
+        axios.get(`https://dev-books-server.herokuapp.com/search?keyword=${data.keyword}`)
             .then(response => {
                 setProducts(response.data);
                 setLoading(false);
@@ -41,10 +41,10 @@ const Home = () => {
 
     return (
         <Container>
-            {/* <form className="search-box" onSubmit={handleSubmit(onSubmit)}>
+            <form className="search-box" onSubmit={handleSubmit(onSubmit)}>
                 <input name="keyword" type="text" ref={register} className="search-input" placeholder="Search" />
                 <button className="search-btn">Search</button>
-            </form> */}
+            </form>
             <PuffLoader loading={loading} css={loaderStyle} color={"#FF4B2B"} size={150} />
             <Row xs={1} md={2} lg={3} className="g-4 my-5">
                 {

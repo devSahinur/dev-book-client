@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 const SingleManage = (book) => {
     const {authorName, bookName, price, _id} = book.book;
     const deleteSinglePost =(id) => {
-        fetch(`https://vast-ridge-55791.herokuapp.com/post/${id}`,{
+        fetch(`http://localhost:5500/post/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())

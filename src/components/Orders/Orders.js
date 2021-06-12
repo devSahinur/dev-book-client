@@ -16,7 +16,7 @@ const Orders = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`https://electro-server.herokuapp.com/orders?email=${loggedInUser.email}`)
+        axios.get(`https://dev-books-server.herokuapp.com/orders?email=${loggedInUser.email}`)
             .then(response => {
                 setOrderDetails(response.data);
                 setLoading(false);

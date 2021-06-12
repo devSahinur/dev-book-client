@@ -15,7 +15,7 @@ const ManageProduct = ({ setEditProduct }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('https://electro-server.herokuapp.com/products')
+        axios.get('https://dev-books-server.herokuapp.com/products')
             .then(response => {
                 setItems(response.data);
                 setLoading(false);
@@ -28,7 +28,7 @@ const ManageProduct = ({ setEditProduct }) => {
     const handleDeleteItem = id => {
         const removedItems = items.filter(item => item._id !== id);
 
-        axios.delete(`https://electro-server.herokuapp.com/delete/${id}`)
+        axios.delete(`https://dev-books-server.herokuapp.com/delete/${id}`)
             .then(response => {
                 response && setItems(removedItems);;
             })
