@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import PuffLoader from "react-spinners/PuffLoader";
+import HashLoader from "react-spinners/HashLoader";
 // import Footer from '../Footer/Footer';
 import Product from '../Product/Product';
 
@@ -43,9 +43,9 @@ const Home = () => {
         <Container>
             <form className="search-box" onSubmit={handleSubmit(onSubmit)}>
                 <input name="keyword" type="text" ref={register} className="search-input" placeholder="Search" />
-                <button className="search-btn">Search</button>
+                <button className="search-btn btn-grad">Search</button>
             </form>
-            <PuffLoader loading={loading} css={loaderStyle} color={"#FF4B2B"} size={150} />
+            <HashLoader loading={loading} css={loaderStyle} color={"#4A75E6"} size={115} />
             <Row xs={1} md={2} lg={3} className="g-4 my-5">
                 {
                     products.map(product => <Product key={product._id} product={product} />)
@@ -56,3 +56,4 @@ const Home = () => {
 };
 
 export default Home;
+

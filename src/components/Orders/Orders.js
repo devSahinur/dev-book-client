@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import MoonLoader from "react-spinners/MoonLoader";
+import PuffLoader from "react-spinners/PuffLoader";
 import { UserContext } from '../../App';
 import OrderList from '../OrderList/OrderList';
 
@@ -31,7 +31,7 @@ const Orders = () => {
 
     return (
         <Container>
-            {loading ? <MoonLoader loading={loading} css={loaderStyle} size={60} /> : (
+            {loading ? <PuffLoader loading={loading} css={loaderStyle} color={"#4A75E6"} size={160} /> : (
                 orderDetails.length ?
                     <>
                         <h1 className="text-center" style={{ fontSize: '2rem' }}>Thanks for your order</h1>

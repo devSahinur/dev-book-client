@@ -25,7 +25,7 @@ const Product = (props) => {
                     <Card.Title
                         as={"h2"}
                         className="mb-1"
-                        style={{ fontWeight: "600", color: "#FF4B2B"}}>
+                        style={{ fontWeight: "600", color: "#4A75E6"}}>
                         ${price}
                     </Card.Title>
                     <Button

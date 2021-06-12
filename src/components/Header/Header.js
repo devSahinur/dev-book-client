@@ -31,7 +31,6 @@ const Header = () => {
                         <Nav.Link as={Link} to="/" className="mr-4" active style={{ fontWeight: "500" }}>Home</Nav.Link>
                         <Nav.Link as={Link} to="orders" className="mr-4" active style={{ fontWeight: "500" }}>Orders</Nav.Link>
                         <Nav.Link as={Link} to="admin" className="mr-4" active style={{ fontWeight: "500" }}>Admin</Nav.Link>
-                        {/* <Nav.Link as={Link} to="deals" className="mr-4" active style={{ fontWeight: "500" }}>Deals</Nav.Link> */}
 
                         {loggedInUser?.isSignedIn ?
                             <>
@@ -50,7 +49,7 @@ const Header = () => {
                                                     <strong className="text-center d-block">{loggedInUser.email}</strong>
                                                     <div className="d-flex justify-content-center mt-1">
                                                         <Button onClick={signOut}
-                                                            variant="outline-danger"
+                                                            variant="warning"
                                                             className="shadow-none py-0 px-1"
                                                             size="sm">Logout</Button>
                                                     </div>
@@ -72,7 +71,7 @@ const Header = () => {
                                 }
                             </>
                             :
-                            <Button as={Link} to="login" className="shadow-none login-btn">
+                            <Button as={Link} to="login" className="shadow-none btn-grad login-btn">
                                 Login
                             </Button>
                         }
