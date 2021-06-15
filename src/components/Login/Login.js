@@ -21,6 +21,12 @@ const Login = () => {
 
     const { register, handleSubmit } = useForm();
 
+    // react-hook-form work with multiple forms in one page this code blow
+    const{
+        register: register2,
+        handleSubmit : handleSubmit2
+    } = useForm();
+
     const [user, setUser] = useState({
         isSignedIn: false,
         userName: '',
@@ -55,6 +61,22 @@ const Login = () => {
             });
     }
 
+
+
+    // login email and password
+    const onSubmitEmail = data =>{
+        const {email, password } = data;
+
+        signInWithEmailAndPassword(email, password)
+                .then(res => {
+                    setUser(res);
+                    history.replace(from);
+                })
+    };
+
+
+
+    // sign up name, email and password
     const onSubmit = data => {
         const { name, email, password } = data;
 
@@ -66,15 +88,10 @@ const Login = () => {
                     history.replace(from);
                 })
         }
+    };
 
-        if (!newUser && email && password) {
-            signInWithEmailAndPassword(email, password)
-                .then(res => {
-                    setUser(res);
-                    history.replace(from);
-                })
-        }
-    }
+
+
     const signUpBtnHandle = () => {
         setNewUser(true)
         setMode('sign-up-mode')
@@ -91,14 +108,14 @@ const Login = () => {
         <div className={`containerr ${mode}`}>
             <div className="forms-container">
                 <div className="signin-signup">
-                <form  onSubmit={handleSubmit(onSubmit)}  className=" login-form sign-in-form">
+                <form  onSubmit={handleSubmit2(onSubmitEmail)}  className=" login-form sign-in-form">
                     <h2 className="title">Sign in</h2>
                     <div className="input-field">
                         <i className="fas fa-user"></i>
                         <input
                             name="email"
                             type="email"
-                            ref={register({ required: true, pattern: /\S+@\S+\.\S+/ })}
+                            ref={register2({ required: true, pattern: /\S+@\S+\.\S+/ })}
                             placeholder="Email"
                             required />
                     </div>
@@ -107,7 +124,7 @@ const Login = () => {
                         <input
                             name="password"
                             type="password"
-                            ref={register({ required: true })}
+                            ref={register2({ required: true })}
                             placeholder="Password"
                             required />
                     </div>
